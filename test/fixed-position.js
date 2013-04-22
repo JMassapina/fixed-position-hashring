@@ -70,6 +70,8 @@ describe('Fixed Position Hashring', function() {
         testObj1.removeServer(server1);
         testObj2.removeServer(server2);
 
+        assert.notEqual(testObj1.getNode(key), server1);
+        assert.notEqual(testObj2.getNode(key), server2);
         assert.equal(serverPosition(testObj1.getNode(key)), serverPosition(testObj2.getNode(key)));
     });
 

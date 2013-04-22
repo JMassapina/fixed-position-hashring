@@ -36,9 +36,12 @@ FixedPositionHashRing.prototype._getMappedServer = function(mapping) {
 };
 
 FixedPositionHashRing.prototype._getMappingFromServer = function(server) {
-    var mapping = _.find(this.mappings, function(val) {
-        return val === mapping;
-    });
+    var mapping = _.chain(this.mappings)
+        .invert()
+        .find(function(key, value) {
+            return value === server;
+        })
+        .value();
 
     if (mapping == null) {
         return server;
